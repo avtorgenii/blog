@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Trading Buddy 2.0 — my personal helper web app for trading.</title>
+		<meta name="description" content="I am writing about my experiences as a future devops">
+		<link rel="alternate" href="/blog/feed/feed.xml" type="application/atom+xml" title="Sasha&#39;s blog">
+		
+		
+		
+		<style>/* This is an arbitrary CSS string added to the bundle */
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--background-color: #15202b;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 40em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img{
+  max-width: 100%;
+}
+img[width][height] {
+  height: auto;
+}
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+#skip-link {
+	text-decoration: none;
+	background: var(--background-color);
+	color: var(--text-color);
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--color-gray-90);
+	border-radius: 2px;
+}
+
+/* Prevent visually-hidden skip link fom pushing content around when focused */
+#skip-link.visually-hidden:focus {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	/* Ensure it is positioned on top of everything else when it is shown */
+	z-index: 999;
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: .5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	counter-reset: start-from var(--postlist-index);
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}</style>
+		
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/blog/" class="home-link">Sasha&#39;s blog</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/blog/">Home</a></li>
+					<li class="nav-item"><a href="/blog/about/">About</a></li>
+					<li class="nav-item"><a href="/blog/feed/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="main">
+			<heading-anchors>
+				
+
+
+<h1 id="trading-buddy-2-0-my-personal-helper-web-app-for-trading">Trading Buddy 2.0 — my personal helper web app for trading.</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2025-11-08">08 November 2025</time></li>
+	<li><a href="/blog/tags/django/" class="post-tag">django</a>, </li>
+	<li><a href="/blog/tags/sveltekit/" class="post-tag">sveltekit</a>, </li>
+	<li><a href="/blog/tags/postgresql/" class="post-tag">postgresql</a>, </li>
+	<li><a href="/blog/tags/docker/" class="post-tag">docker</a>, </li>
+	<li><a href="/blog/tags/backups/" class="post-tag">backups</a>, </li>
+	<li><a href="/blog/tags/trading/" class="post-tag">trading</a>, </li>
+	<li><a href="/blog/tags/trading-buddy/" class="post-tag">trading buddy</a></li>
+</ul>
+
+<h2 id="what-is-it">What is it?</h2>
+<p>Trading Buddy 2.0 is a web app which serves as an interface between trader and exchange and automates numerous repetitive tasks trader does every trading day. It delivers seamless experience between trader and exchange where trader doesn't have to trade in one place, calculate position size in another one and lead and analyze his trades journal somewhere else.</p>
+<h2 id="what-can-it-do">What can it do?</h2>
+<p>Among those automated tasks are:</p>
+<ul>
+<li>Position size calculation based on specified risk and deposit, entry price and stop-loss price</li>
+<li>Specifying more than take-profit before order is placed and filled — Binance, ByBit, BingX allow for specification of only one take-profit before the position is filled</li>
+<li>Removement of the open order when price has reached certain level - useful when you place limit orders and cancel this order if the price goes to far in direction of your take-profit without otder being filled</li>
+<li>Moving stop-loss to entry level after certain take-profit is filled - so you don't have to track your position and manually move the stop-loss</li>
+<li>Tracking all your trades in trading Jounal which automatically fills a bunch of data about your trade for you</li>
+</ul>
+<p>Besides features above webapp also has statistics module which shows your trading statistics in clear and useful way.</p>
+<h2 id="how-to-use-it">How to use it?</h2>
+<h3 id="settings">Settings</h3>
+<p>Visiting trading buddy for the first time, it will greet you with the Sign In screen like below:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/_eUuDkK1lF-824.avif 824w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/_eUuDkK1lF-824.webp 824w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/_eUuDkK1lF-824.png" alt="Sign In screen" width="824" height="802"></picture>
+Click on Sign up button below, enter credentials and you will be automatically logged in and redirect to <strong>Trade</strong> panel.
+You will immediately see a red toast like below:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/oQlDTu63Iz-1008.avif 1008w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/oQlDTu63Iz-1008.webp 1008w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/oQlDTu63Iz-1008.png" alt="Trade panel: failed to get main account" width="1008" height="992"></picture>
+It pops up because trading buddy tries to fetch leverage limits for selected coin and fails because you haven't yet configured any trading accounts.</p>
+<p>Each user can have as many trading accounts as he wants — trading account is not the same as user account, you'll understand this in a bit.</p>
+<p>To create your first trading account head to <strong>Settings</strong> panel</p>
+<p>Again you'll see an error toast meaning that you don't have any trading accounts at the moment, ignore it for now:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/zewUoDZ4OF-876.avif 876w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/zewUoDZ4OF-876.webp 876w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/zewUoDZ4OF-876.png" alt="Settings panel: failed to fetch stuff" width="876" height="889"></picture>
+Click on <strong>Add new account</strong>
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/8jLA46K4ga-878.avif 878w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/8jLA46K4ga-878.webp 878w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/8jLA46K4ga-878.png" alt="Settings panel: failed to fetch stuff" width="878" height="963"></picture>
+At the moment only <strong>BingX</strong> exchange is supported</p>
+<p>Specify name of your account, risk per trade and next API keys, for BingX you will need first to create an account on the exchange site, and possibly go through KYC and then get the keys <a href="https://bingx.com/en/accounts/api">here</a>. Paste keys into respective fields and hit <strong>Create Account</strong> button, trading buddy will check if keys are valid and in that keys create account for you.</p>
+<p>After this you will be redirected back to settings panel like below:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/cGJj0IVN36-939.avif 939w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/cGJj0IVN36-939.webp 939w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/cGJj0IVN36-939.png" alt="Settings panel: created trading account" width="939" height="847"></picture>
+Mark your newly created account as main by clicking <strong>Set as Main</strong>, meaning it will be used for all your trading until you choose another account as main one.
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/xYioci7zQ3-939.avif 939w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/xYioci7zQ3-939.webp 939w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/xYioci7zQ3-939.png" alt="Settings panel: set account as main" width="939" height="779"></picture>
+Update your deposit value to 100 usdt:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/D95llsGNCD-936.avif 936w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/D95llsGNCD-936.webp 936w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/D95llsGNCD-936.png" alt="Settings panel: update deposit" width="936" height="775"></picture>
+Now you are ready to trade!</p>
+<h3 id="trade">Trade</h3>
+<p>Head to <strong>Trade</strong> panel and let's test trading buddy by opening a limit order on WLDUSDT with 3 partial takes.</p>
+<p>By default all entry orders that trading buddy places are limit ones, take profits and stop losses are market orders. And you can't really change this behaviour without changing the source code, but I guess if you worry about slippage you never open your positions by market orders — this is true for me so I don't even need option to open positions by market orders.</p>
+<p>Fill entry level, stop-loss and take profits for your next position and see how volume, required margin, potential loss and profit and risk reward ratios are calculated automatically for you!
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/yYCjetuH4u-827.avif 827w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/yYCjetuH4u-827.webp 827w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/yYCjetuH4u-827.png" alt="Trading panel: fill trade data" width="827" height="994"></picture>
+Also notice that trading buddy automatically knows when you want to open short or long by comparing your stop-loss price to open price.</p>
+<p>Hit the <strong>Open Short</strong> button and you will be automatically redirected to <strong>Positions</strong> panel.</p>
+<h3 id="positions">Positions</h3>
+<p>In our case the position was filled instantly so we'll immediately see it in <strong>Current</strong> section:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/jhsskZK3ek-1087.avif 1087w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/jhsskZK3ek-1087.webp 1087w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/jhsskZK3ek-1087.png" alt="Positions panel: current positions section" width="1087" height="745"></picture>
+Let's head to the exchange site to see if everything was done correctly:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/RMvQeX0FqF-1292.avif 1292w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/RMvQeX0FqF-1292.webp 1292w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/RMvQeX0FqF-1292.png" alt="Exchange site: opened position" width="1292" height="953"></picture>
+And yes! The position indeed is opened, all partial take-profits are placed for us as well as the stop-loss.</p>
+<p>Quick note: for safety reasons orders for position opening always go to the exchange with specified stop-loss and a full take profit on the level of your first take-profit or the only one take-profit you specified. That is done to ensure that you won't ever find yourself in a trade without stop-loss or take-profit - to protect your money.</p>
+<p>Let's speed up things and close our position by market order manually by hitting <strong>Close</strong> button on the position widget.</p>
+<p><strong>WARNING</strong>: Close positions only through trading buddy, positions closed from exchange site side won't be properly tracked and finished in tradiong buddy in current version :(.</p>
+<h3 id="journal">Journal</h3>
+<p>Heading to the <strong>Journal</strong> section we are going to see that our trade was tracked and its data was saved:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/fTq5Vy5mkL-1079.avif 1079w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/fTq5Vy5mkL-1079.webp 1079w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/fTq5Vy5mkL-1079.png" alt="Journal panel" width="1079" height="948"></picture>
+<strong>Note</strong>: It may take some time for the app to update trade's data and properly finish it, because trading buddy relies on API that sometimes doesn't update data for finished orders instantly.</p>
+<p>Trading Buddy filled a lot of useful information for as out-of-the-box, like:</p>
+<ul>
+<li>Trade direction</li>
+<li>Risk data</li>
+<li>Net PnL</li>
+<li>Commissions</li>
+<li>Actual risk reward ratio of the trade</li>
+<li>Start and end time</li>
+</ul>
+<p>So after the trade is finished you don't have to manually type that information into the Journal, the only things that are for you to fill up are:</p>
+<ul>
+<li>Timeframe</li>
+<li>Description of the trade, for example: &quot;Retest of accumulation upper bound, POC is in the low part of the range&quot;</li>
+<li>Result - field created for you to reflect on the trade and include result for it</li>
+<li>Screenshot - so you can always come back to your journal to get priceless insides about your trading</li>
+</ul>
+<p>Fill up respective fiedls just by clicking on them, like for the &quot;Result&quot;:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/jWoczBoI6Y-1205.avif 1205w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/jWoczBoI6Y-1205.webp 1205w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/jWoczBoI6Y-1205.png" alt="Journal panel: fill result of the trade" width="1205" height="960"></picture>
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/FKOPysQ6lR-1205.avif 1205w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/FKOPysQ6lR-1205.webp 1205w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/FKOPysQ6lR-1205.png" alt="Journal panel: updated result field of the trade" width="1205" height="935"></picture></p>
+<h3 id="stats">Stats</h3>
+<p>Now let's see what we have in tne <strong>Stats</strong> section:
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/0Kik29rWw_-544.avif 544w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/0Kik29rWw_-544.webp 544w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/0Kik29rWw_-544.png" alt="Stats panel" width="544" height="947"></picture></p>
+<p>And that's pretty much it.</p>
+<p>I hope my tutorial was clear and you will consider using my app, now let's get to some technicals.</p>
+<h2 id="technicals">Technicals</h2>
+<p>Source code is available here --&gt; <a href="https://github.com/avtorgenii/trading-buddy-2.0">source</a></p>
+<h3 id="intro">Intro</h3>
+<p>Trading Buddy 2.0 is actually based on its <a href="https://github.com/avtorgenii/Trading-Buddy">legacy version written in FastAPI</a>.</p>
+<p>Version 2.0 aimed to fix huge amount of problems first version had due to tight deadline of the project, which was made for &quot;Scripting languages&quot; course at my uni, and my complete lack of experience working with web frameworks and databases and building somewhat &quot;big&quot; projects at all. Legacy version had poor system design, instead of modern JS frameworks I relied on pure spaghetti JS code written by ChatGPT, order management system was complete mess, instead of separated database I utilized SQLite embedded directly into the backend, so whenever I needed to update code for the backend I had to SCP my <code>db.sqlite3 </code> to my machine so whole journal wouldn't be eliminated with the container. And many more problems...</p>
+<p>When I say that version 2.0 is based on legacy one I actually mean that only code for integration with the exchange and my custom modified package bingX* are from the legacy version.</p>
+<p>*author of this package is actually <a href="https://github.com/niewiemczego">niewiemczego</a>, I tweaked and fixed bunch of stuff in his package so that's why it lies in my repo along with other code.</p>
+<p>This version of trading buddy was actually started as group project for &quot;Web programming&quot; course at uni with my colaborator <a href="https://github.com/Tomek4861">Tomasz</a> as frontend developer. After the project was graded I took his role and continued developing whole project on my own.</p>
+<h3 id="tech-stack">Tech stack</h3>
+<p>Second version of Trading Buddy uses:</p>
+<ul>
+<li>Django Rest Framework as its backend</li>
+<li>SvelteKit as its frontend even thought SvelteKit is actually a full-stack framework</li>
+<li>Postgres as database</li>
+<li>Offen <a href="https://github.com/offen/docker-volume-backup">docker-volume-backup</a> for easy backups of the database and media files* to dropbox</li>
+<li>NginX as reverse proxy for easy communication between backend and frontend, almost without CORS pain</li>
+</ul>
+<p>*For my personal usage hosting the project on VPS is completely sufficient so I don't use any external serivices like Azure Blob storage and etc. for storing any kind of data — all data except for screenshots for trades is stored in the database, screenshots are stored in a separate docker volume that is plugged to <code>media</code> dir of the django backend.</p>
+<p>Later I will still overengineer infrastructure for trading buddy for my DevOps practice — cloud, k8s and stuff will come into play.</p>
+<h3 id="how-everything-works">How everything works?</h3>
+<h1 id="todo">TODO</h1>
+<p>Draw schema</p>
+<h3 id="problems">Problems</h3>
+<p>Among problems I am planning to address are:</p>
+<ul>
+<li>Coupled background process for OrderPoller and backend</li>
+</ul>
+<h3 id="future">Future</h3>
+<p>In future I am planning to:</p>
+<ul>
+<li>Implement proper CI/CD pipeline</li>
+<li>Separate OrderPoller from the backend, read more about it in my <a href="/blog/blog/2025-11-17-critical-bug-fix-in-order-listener/">next article</a></li>
+<li>Refactor frontend</li>
+<li>Add monitoring and central logging hub to the project</li>
+<li>Overengineer infrastructure in couple of ways, now I can think only of deploying to cloud like AWS and building some sophisticated infrastrute for it and deploying to VPS but not with simple docker-compose, rather with Kubernetes and other production level stuff.</li>
+</ul>
+
+<ul class="links-nextprev"><li class="links-nextprev-next">Next →<br><a href="/blog/blog/2025-11-17-critical-bug-fix-in-order-listener/">How my fix to a critical bug in the order change listening system almost turned out to be pointless.</a></li>
+</ul>
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p>
+				<em>Built with <a href="https://www.11ty.dev/">Eleventy v3.1.2</a></em>
+			</p>
+		</footer>
+
+		<!-- This page `/blog/2025-11-08-trading-buddy-2.0/` was built on 2025-11-08T16:05:55.487Z -->
+		<script type="module" src="/blog/dist/cC8wS6ZjFU.js"></script>
+	</body>
+</html>

@@ -5,7 +5,7 @@
   <subtitle>This is a longer description about your blog.</subtitle>
   <link href="https://example.com/blog/feed/feed.xml" rel="self" />
   <link href="https://example.com/blog/" />
-  <updated>2025-11-07T00:00:00Z</updated>
+  <updated>2025-11-17T00:00:00Z</updated>
   <id>https://example.com/blog/</id>
   <author>
     <name>Your Name</name>
@@ -13,7 +13,7 @@
   <entry>
     <title>How my fix to a critical bug in the order change listening system almost turned out to be pointless.</title>
     <link href="https://example.com/blog/blog/2025-11-17-critical-bug-fix-in-order-listener/" />
-    <updated>2025-11-07T00:00:00Z</updated>
+    <updated>2025-11-17T00:00:00Z</updated>
     <id>https://example.com/blog/blog/2025-11-17-critical-bug-fix-in-order-listener/</id>
     <content type="html">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;My&lt;/p&gt;
@@ -21,9 +21,9 @@
   </entry>
   <entry>
     <title>Trading Buddy 2.0 — my personal helper web app for trading.</title>
-    <link href="https://example.com/blog/blog/2025-11-07-trading-buddy-2.0/" />
-    <updated>2025-11-07T00:00:00Z</updated>
-    <id>https://example.com/blog/blog/2025-11-07-trading-buddy-2.0/</id>
+    <link href="https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/" />
+    <updated>2025-11-08T00:00:00Z</updated>
+    <id>https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/</id>
     <content type="html">&lt;h2 id=&quot;what-is-it&quot;&gt;What is it?&lt;/h2&gt;
 &lt;p&gt;Trading Buddy 2.0 is a web app which serves as an interface between trader and exchange and automates numerous repetitive tasks trader does every trading day. It delivers seamless experience between trader and exchange where trader doesn&#39;t have to trade in one place, calculate position size in another one and lead and analyze his trades journal somewhere else.&lt;/p&gt;
 &lt;h2 id=&quot;what-can-it-do&quot;&gt;What can it do?&lt;/h2&gt;
@@ -38,11 +38,107 @@
 &lt;p&gt;Besides features above webapp also has statistics module which shows your trading statistics in clear and useful way.&lt;/p&gt;
 &lt;h2 id=&quot;how-to-use-it&quot;&gt;How to use it?&lt;/h2&gt;
 &lt;h3 id=&quot;settings&quot;&gt;Settings&lt;/h3&gt;
+&lt;p&gt;Visiting trading buddy for the first time, it will greet you with the Sign In screen like below:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/_eUuDkK1lF-824.avif 824w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/_eUuDkK1lF-824.webp 824w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/_eUuDkK1lF-824.png&quot; alt=&quot;Sign In screen&quot; width=&quot;824&quot; height=&quot;802&quot;&gt;&lt;/picture&gt;
+Click on Sign up button below, enter credentials and you will be automatically logged in and redirect to &lt;strong&gt;Trade&lt;/strong&gt; panel.
+You will immediately see a red toast like below:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/oQlDTu63Iz-1008.avif 1008w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/oQlDTu63Iz-1008.webp 1008w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/oQlDTu63Iz-1008.png&quot; alt=&quot;Trade panel: failed to get main account&quot; width=&quot;1008&quot; height=&quot;992&quot;&gt;&lt;/picture&gt;
+It pops up because trading buddy tries to fetch leverage limits for selected coin and fails because you haven&#39;t yet configured any trading accounts.&lt;/p&gt;
+&lt;p&gt;Each user can have as many trading accounts as he wants — trading account is not the same as user account, you&#39;ll understand this in a bit.&lt;/p&gt;
+&lt;p&gt;To create your first trading account head to &lt;strong&gt;Settings&lt;/strong&gt; panel&lt;/p&gt;
+&lt;p&gt;Again you&#39;ll see an error toast meaning that you don&#39;t have any trading accounts at the moment, ignore it for now:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/zewUoDZ4OF-876.avif 876w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/zewUoDZ4OF-876.webp 876w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/zewUoDZ4OF-876.png&quot; alt=&quot;Settings panel: failed to fetch stuff&quot; width=&quot;876&quot; height=&quot;889&quot;&gt;&lt;/picture&gt;
+Click on &lt;strong&gt;Add new account&lt;/strong&gt;
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/8jLA46K4ga-878.avif 878w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/8jLA46K4ga-878.webp 878w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/8jLA46K4ga-878.png&quot; alt=&quot;Settings panel: failed to fetch stuff&quot; width=&quot;878&quot; height=&quot;963&quot;&gt;&lt;/picture&gt;
+At the moment only &lt;strong&gt;BingX&lt;/strong&gt; exchange is supported&lt;/p&gt;
+&lt;p&gt;Specify name of your account, risk per trade and next API keys, for BingX you will need first to create an account on the exchange site, and possibly go through KYC and then get the keys &lt;a href=&quot;https://bingx.com/en/accounts/api&quot;&gt;here&lt;/a&gt;. Paste keys into respective fields and hit &lt;strong&gt;Create Account&lt;/strong&gt; button, trading buddy will check if keys are valid and in that keys create account for you.&lt;/p&gt;
+&lt;p&gt;After this you will be redirected back to settings panel like below:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/cGJj0IVN36-939.avif 939w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/cGJj0IVN36-939.webp 939w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/cGJj0IVN36-939.png&quot; alt=&quot;Settings panel: created trading account&quot; width=&quot;939&quot; height=&quot;847&quot;&gt;&lt;/picture&gt;
+Mark your newly created account as main by clicking &lt;strong&gt;Set as Main&lt;/strong&gt;, meaning it will be used for all your trading until you choose another account as main one.
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/xYioci7zQ3-939.avif 939w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/xYioci7zQ3-939.webp 939w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/xYioci7zQ3-939.png&quot; alt=&quot;Settings panel: set account as main&quot; width=&quot;939&quot; height=&quot;779&quot;&gt;&lt;/picture&gt;
+Update your deposit value to 100 usdt:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/D95llsGNCD-936.avif 936w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/D95llsGNCD-936.webp 936w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/D95llsGNCD-936.png&quot; alt=&quot;Settings panel: update deposit&quot; width=&quot;936&quot; height=&quot;775&quot;&gt;&lt;/picture&gt;
+Now you are ready to trade!&lt;/p&gt;
 &lt;h3 id=&quot;trade&quot;&gt;Trade&lt;/h3&gt;
+&lt;p&gt;Head to &lt;strong&gt;Trade&lt;/strong&gt; panel and let&#39;s test trading buddy by opening a limit order on WLDUSDT with 3 partial takes.&lt;/p&gt;
+&lt;p&gt;By default all entry orders that trading buddy places are limit ones, take profits and stop losses are market orders. And you can&#39;t really change this behaviour without changing the source code, but I guess if you worry about slippage you never open your positions by market orders — this is true for me so I don&#39;t even need option to open positions by market orders.&lt;/p&gt;
+&lt;p&gt;Fill entry level, stop-loss and take profits for your next position and see how volume, required margin, potential loss and profit and risk reward ratios are calculated automatically for you!
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/yYCjetuH4u-827.avif 827w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/yYCjetuH4u-827.webp 827w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/yYCjetuH4u-827.png&quot; alt=&quot;Trading panel: fill trade data&quot; width=&quot;827&quot; height=&quot;994&quot;&gt;&lt;/picture&gt;
+Also notice that trading buddy automatically knows when you want to open short or long by comparing your stop-loss price to open price.&lt;/p&gt;
+&lt;p&gt;Hit the &lt;strong&gt;Open Short&lt;/strong&gt; button and you will be automatically redirected to &lt;strong&gt;Positions&lt;/strong&gt; panel.&lt;/p&gt;
 &lt;h3 id=&quot;positions&quot;&gt;Positions&lt;/h3&gt;
+&lt;p&gt;In our case the position was filled instantly so we&#39;ll immediately see it in &lt;strong&gt;Current&lt;/strong&gt; section:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/jhsskZK3ek-1087.avif 1087w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/jhsskZK3ek-1087.webp 1087w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/jhsskZK3ek-1087.png&quot; alt=&quot;Positions panel: current positions section&quot; width=&quot;1087&quot; height=&quot;745&quot;&gt;&lt;/picture&gt;
+Let&#39;s head to the exchange site to see if everything was done correctly:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/RMvQeX0FqF-1292.avif 1292w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/RMvQeX0FqF-1292.webp 1292w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/RMvQeX0FqF-1292.png&quot; alt=&quot;Exchange site: opened position&quot; width=&quot;1292&quot; height=&quot;953&quot;&gt;&lt;/picture&gt;
+And yes! The position indeed is opened, all partial take-profits are placed for us as well as the stop-loss.&lt;/p&gt;
+&lt;p&gt;Quick note: for safety reasons orders for position opening always go to the exchange with specified stop-loss and a full take profit on the level of your first take-profit or the only one take-profit you specified. That is done to ensure that you won&#39;t ever find yourself in a trade without stop-loss or take-profit - to protect your money.&lt;/p&gt;
+&lt;p&gt;Let&#39;s speed up things and close our position by market order manually by hitting &lt;strong&gt;Close&lt;/strong&gt; button on the position widget.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;WARNING&lt;/strong&gt;: Close positions only through trading buddy, positions closed from exchange site side won&#39;t be properly tracked and finished in tradiong buddy in current version :(.&lt;/p&gt;
 &lt;h3 id=&quot;journal&quot;&gt;Journal&lt;/h3&gt;
+&lt;p&gt;Heading to the &lt;strong&gt;Journal&lt;/strong&gt; section we are going to see that our trade was tracked and its data was saved:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/fTq5Vy5mkL-1079.avif 1079w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/fTq5Vy5mkL-1079.webp 1079w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/fTq5Vy5mkL-1079.png&quot; alt=&quot;Journal panel&quot; width=&quot;1079&quot; height=&quot;948&quot;&gt;&lt;/picture&gt;
+&lt;strong&gt;Note&lt;/strong&gt;: It may take some time for the app to update trade&#39;s data and properly finish it, because trading buddy relies on API that sometimes doesn&#39;t update data for finished orders instantly.&lt;/p&gt;
+&lt;p&gt;Trading Buddy filled a lot of useful information for as out-of-the-box, like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Trade direction&lt;/li&gt;
+&lt;li&gt;Risk data&lt;/li&gt;
+&lt;li&gt;Net PnL&lt;/li&gt;
+&lt;li&gt;Commissions&lt;/li&gt;
+&lt;li&gt;Actual risk reward ratio of the trade&lt;/li&gt;
+&lt;li&gt;Start and end time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So after the trade is finished you don&#39;t have to manually type that information into the Journal, the only things that are for you to fill up are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Timeframe&lt;/li&gt;
+&lt;li&gt;Description of the trade, for example: &amp;quot;Retest of accumulation upper bound, POC is in the low part of the range&amp;quot;&lt;/li&gt;
+&lt;li&gt;Result - field created for you to reflect on the trade and include result for it&lt;/li&gt;
+&lt;li&gt;Screenshot - so you can always come back to your journal to get priceless insides about your trading&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Fill up respective fiedls just by clicking on them, like for the &amp;quot;Result&amp;quot;:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/jWoczBoI6Y-1205.avif 1205w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/jWoczBoI6Y-1205.webp 1205w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/jWoczBoI6Y-1205.png&quot; alt=&quot;Journal panel: fill result of the trade&quot; width=&quot;1205&quot; height=&quot;960&quot;&gt;&lt;/picture&gt;
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/FKOPysQ6lR-1205.avif 1205w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/FKOPysQ6lR-1205.webp 1205w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/FKOPysQ6lR-1205.png&quot; alt=&quot;Journal panel: updated result field of the trade&quot; width=&quot;1205&quot; height=&quot;935&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;h3 id=&quot;stats&quot;&gt;Stats&lt;/h3&gt;
+&lt;p&gt;Now let&#39;s see what we have in tne &lt;strong&gt;Stats&lt;/strong&gt; section:
+&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/0Kik29rWw_-544.avif 544w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/0Kik29rWw_-544.webp 544w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/blog/2025-11-08-trading-buddy-2.0/0Kik29rWw_-544.png&quot; alt=&quot;Stats panel&quot; width=&quot;544&quot; height=&quot;947&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;And that&#39;s pretty much it.&lt;/p&gt;
+&lt;p&gt;I hope my tutorial was clear and you will consider using my app, now let&#39;s get to some technicals.&lt;/p&gt;
+&lt;h2 id=&quot;technicals&quot;&gt;Technicals&lt;/h2&gt;
 &lt;p&gt;Source code is available here --&amp;gt; &lt;a href=&quot;https://github.com/avtorgenii/trading-buddy-2.0&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;intro&quot;&gt;Intro&lt;/h3&gt;
+&lt;p&gt;Trading Buddy 2.0 is actually based on its &lt;a href=&quot;https://github.com/avtorgenii/Trading-Buddy&quot;&gt;legacy version written in FastAPI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Version 2.0 aimed to fix huge amount of problems first version had due to tight deadline of the project, which was made for &amp;quot;Scripting languages&amp;quot; course at my uni, and my complete lack of experience working with web frameworks and databases and building somewhat &amp;quot;big&amp;quot; projects at all. Legacy version had poor system design, instead of modern JS frameworks I relied on pure spaghetti JS code written by ChatGPT, order management system was complete mess, instead of separated database I utilized SQLite embedded directly into the backend, so whenever I needed to update code for the backend I had to SCP my &lt;code&gt;db.sqlite3 &lt;/code&gt; to my machine so whole journal wouldn&#39;t be eliminated with the container. And many more problems...&lt;/p&gt;
+&lt;p&gt;When I say that version 2.0 is based on legacy one I actually mean that only code for integration with the exchange and my custom modified package bingX* are from the legacy version.&lt;/p&gt;
+&lt;p&gt;*author of this package is actually &lt;a href=&quot;https://github.com/niewiemczego&quot;&gt;niewiemczego&lt;/a&gt;, I tweaked and fixed bunch of stuff in his package so that&#39;s why it lies in my repo along with other code.&lt;/p&gt;
+&lt;p&gt;This version of trading buddy was actually started as group project for &amp;quot;Web programming&amp;quot; course at uni with my colaborator &lt;a href=&quot;https://github.com/Tomek4861&quot;&gt;Tomasz&lt;/a&gt; as frontend developer. After the project was graded I took his role and continued developing whole project on my own.&lt;/p&gt;
+&lt;h3 id=&quot;tech-stack&quot;&gt;Tech stack&lt;/h3&gt;
+&lt;p&gt;Second version of Trading Buddy uses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Django Rest Framework as its backend&lt;/li&gt;
+&lt;li&gt;SvelteKit as its frontend even thought SvelteKit is actually a full-stack framework&lt;/li&gt;
+&lt;li&gt;Postgres as database&lt;/li&gt;
+&lt;li&gt;Offen &lt;a href=&quot;https://github.com/offen/docker-volume-backup&quot;&gt;docker-volume-backup&lt;/a&gt; for easy backups of the database and media files* to dropbox&lt;/li&gt;
+&lt;li&gt;NginX as reverse proxy for easy communication between backend and frontend, almost without CORS pain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;*For my personal usage hosting the project on VPS is completely sufficient so I don&#39;t use any external serivices like Azure Blob storage and etc. for storing any kind of data — all data except for screenshots for trades is stored in the database, screenshots are stored in a separate docker volume that is plugged to &lt;code&gt;media&lt;/code&gt; dir of the django backend.&lt;/p&gt;
+&lt;p&gt;Later I will still overengineer infrastructure for trading buddy for my DevOps practice — cloud, k8s and stuff will come into play.&lt;/p&gt;
+&lt;h3 id=&quot;how-everything-works&quot;&gt;How everything works?&lt;/h3&gt;
+&lt;h1 id=&quot;todo&quot;&gt;TODO&lt;/h1&gt;
+&lt;p&gt;Draw schema&lt;/p&gt;
+&lt;h3 id=&quot;problems&quot;&gt;Problems&lt;/h3&gt;
+&lt;p&gt;Among problems I am planning to address are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Coupled background process for OrderPoller and backend&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;future&quot;&gt;Future&lt;/h3&gt;
+&lt;p&gt;In future I am planning to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Implement proper CI/CD pipeline&lt;/li&gt;
+&lt;li&gt;Separate OrderPoller from the backend, read more about it in my &lt;a href=&quot;https://example.com/blog/blog/2025-11-17-critical-bug-fix-in-order-listener/&quot;&gt;next article&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Refactor frontend&lt;/li&gt;
+&lt;li&gt;Add monitoring and central logging hub to the project&lt;/li&gt;
+&lt;li&gt;Overengineer infrastructure in couple of ways, now I can think only of deploying to cloud like AWS and building some sophisticated infrastrute for it and deploying to VPS but not with simple docker-compose, rather with Kubernetes and other production level stuff.&lt;/li&gt;
+&lt;/ul&gt;
 </content>
   </entry>
 </feed>
