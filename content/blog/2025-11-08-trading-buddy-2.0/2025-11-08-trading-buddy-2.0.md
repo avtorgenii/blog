@@ -6,6 +6,8 @@ tags:
     - sveltekit
     - postgresql
     - docker
+    - CI/CD
+    - kubernetes
     - backups
     - trading
     - trading buddy
@@ -140,19 +142,12 @@ Second version of Trading Buddy uses:
 Later I will still overengineer infrastructure for trading buddy for my DevOps practice — cloud, k8s and stuff will come into play.
 
 ### How everything works?
-# TODO 
-Draw schema
+In case of VPS which I personaly use infrastructure looks like below
+<img src="./tb-vps-architecture.png" alt="VPS infra architecture">
+Grafana monitoring stack is purely optional and was made just for practice - these folks eat more RAM than whole my app so I will keep only Dozzle for logs and metrics
 
 
-### Problems
-Among problems I am planning to address are:
-- Coupled background process for OrderPoller and backend
+I also designed and implemeneted Kubernetes cluster for my app in Kind like below
+<img src="./tb-k8s-architecture.png" alt="K8s infra architecture">
+As for now ArgoCD only tracks changes of .yaml files of my app and doesn't update whole app when I push new version of Docker images. This could be achieved with ArgoCD Image Updater which I will implement in future 
 
-
-### Future
-In future I am planning to:
-- Implement proper CI/CD pipeline
-- Separate OrderPoller from the backend, read more about it in my <a href="/blog/2025-11-17-critical-bug-fix-in-order-listener.md">next article</a>
-- Refactor frontend
-- Add monitoring and central logging hub to the project
-- Overengineer infrastructure in couple of ways, now I can think only of deploying to cloud like AWS and building some sophisticated infrastrute for it and deploying to VPS but not with simple docker-compose, rather with Kubernetes and other production level stuff.
