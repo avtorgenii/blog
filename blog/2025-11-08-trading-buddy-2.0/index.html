@@ -505,6 +505,8 @@ pre[class*="language-diff-"] {
 	<li><a href="/blog/tags/sveltekit/" class="post-tag">sveltekit</a>, </li>
 	<li><a href="/blog/tags/postgresql/" class="post-tag">postgresql</a>, </li>
 	<li><a href="/blog/tags/docker/" class="post-tag">docker</a>, </li>
+	<li><a href="/blog/tags/ci-cd/" class="post-tag">CI/CD</a>, </li>
+	<li><a href="/blog/tags/kubernetes/" class="post-tag">kubernetes</a>, </li>
 	<li><a href="/blog/tags/backups/" class="post-tag">backups</a>, </li>
 	<li><a href="/blog/tags/trading/" class="post-tag">trading</a>, </li>
 	<li><a href="/blog/tags/trading-buddy/" class="post-tag">trading buddy</a></li>
@@ -609,25 +611,13 @@ And yes! The position indeed is opened, all partial take-profits are placed for 
 <p>*For my personal usage hosting the project on VPS is completely sufficient so I don't use any external serivices like Azure Blob storage and etc. for storing any kind of data — all data except for screenshots for trades is stored in the database, screenshots are stored in a separate docker volume that is plugged to <code>media</code> dir of the django backend.</p>
 <p>Later I will still overengineer infrastructure for trading buddy for my DevOps practice — cloud, k8s and stuff will come into play.</p>
 <h3 id="how-everything-works">How everything works?</h3>
-<h1 id="todo">TODO</h1>
-<p>Draw schema</p>
-<h3 id="problems">Problems</h3>
-<p>Among problems I am planning to address are:</p>
-<ul>
-<li>Coupled background process for OrderPoller and backend</li>
-</ul>
-<h3 id="future">Future</h3>
-<p>In future I am planning to:</p>
-<ul>
-<li>Implement proper CI/CD pipeline</li>
-<li>Separate OrderPoller from the backend, read more about it in my <a href="/blog/blog/2025-11-17-critical-bug-fix-in-order-listener/">next article</a></li>
-<li>Refactor frontend</li>
-<li>Add monitoring and central logging hub to the project</li>
-<li>Overengineer infrastructure in couple of ways, now I can think only of deploying to cloud like AWS and building some sophisticated infrastrute for it and deploying to VPS but not with simple docker-compose, rather with Kubernetes and other production level stuff.</li>
-</ul>
+<p>In case of VPS which I personaly use infrastructure looks like below
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/voU1y_6x58-2135.avif 2135w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/voU1y_6x58-2135.webp 2135w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/voU1y_6x58-2135.png" alt="VPS infra architecture" width="2135" height="986"></picture>
+Grafana monitoring stack is purely optional and was made just for practice - these folks eat more RAM than whole my app so I will keep only Dozzle for logs and metrics</p>
+<p>I also designed and implemeneted Kubernetes cluster for my app in Kind like below
+<picture><source type="image/avif" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/wspVZ67RpA-2258.avif 2258w"><source type="image/webp" srcset="/blog/blog/2025-11-08-trading-buddy-2.0/wspVZ67RpA-2258.webp 2258w"><img loading="lazy" decoding="async" src="/blog/blog/2025-11-08-trading-buddy-2.0/wspVZ67RpA-2258.png" alt="K8s infra architecture" width="2258" height="2140"></picture>
+As for now ArgoCD only tracks changes of .yaml files of my app and doesn't update whole app when I push new version of Docker images. This could be achieved with ArgoCD Image Updater which I will implement in future</p>
 
-<ul class="links-nextprev"><li class="links-nextprev-next">Next →<br><a href="/blog/blog/2025-11-17-critical-bug-fix-in-order-listener/">How my fix to a critical bug in the order change listening system almost turned out to be pointless.</a></li>
-</ul>
 
 			</heading-anchors>
 		</main>
@@ -638,7 +628,7 @@ And yes! The position indeed is opened, all partial take-profits are placed for 
 			</p>
 		</footer>
 
-		<!-- This page `/blog/2025-11-08-trading-buddy-2.0/` was built on 2025-11-08T16:05:55.487Z -->
+		<!-- This page `/blog/2025-11-08-trading-buddy-2.0/` was built on 2026-02-05T18:03:32.342Z -->
 		<script type="module" src="/blog/dist/cC8wS6ZjFU.js"></script>
 	</body>
 </html>
